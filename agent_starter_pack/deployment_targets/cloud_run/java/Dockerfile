@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Build stage
-FROM maven:3.9-eclipse-temurin-17 AS builder
+FROM maven:3.9-eclipse-temurin-17@sha256:c3c2003efc0754af8de21d6ff7192aa3ea614f048fc9f0aaf3286b880fcd0a78 AS builder
 
 WORKDIR /app
 
@@ -26,7 +26,7 @@ COPY src ./src
 RUN mvn package -DskipTests -B
 
 # Runtime stage
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre@sha256:677a6527614425eb0493248cb0cc6c88265ead4118b61db015575756e7393bed
 
 WORKDIR /app
 

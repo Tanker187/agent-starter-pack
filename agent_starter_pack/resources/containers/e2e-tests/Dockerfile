@@ -1,5 +1,5 @@
 # Stage 1: Builder - Prepare APT repositories
-FROM ghcr.io/astral-sh/uv:0.9.18-python3.11-bookworm-slim AS builder
+FROM ghcr.io/astral-sh/uv:0.9.18-python3.11-bookworm-slim@sha256:2d0d1ddd438eda34e0604caa30ff313a2521aab6290d3c49e1ce661fa63a2c48 AS builder
 
 # Install tools needed to add repositories
 RUN apt-get update && \
@@ -24,7 +24,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Stage 2: Final Image
-FROM ghcr.io/astral-sh/uv:0.9.18-python3.11-bookworm-slim
+FROM ghcr.io/astral-sh/uv:0.9.18-python3.11-bookworm-slim@sha256:2d0d1ddd438eda34e0604caa30ff313a2521aab6290d3c49e1ce661fa63a2c48
 
 # Copy repository configurations from the builder stage
 COPY --from=builder /etc/apt/sources.list.d/ /etc/apt/sources.list.d/
